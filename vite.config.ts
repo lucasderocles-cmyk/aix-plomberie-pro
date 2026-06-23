@@ -12,4 +12,10 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Force Nitro à cibler Vercel explicitement : par défaut, hors environnement
+  // Lovable (donc en self-hosting), Nitro est désactivé et Vercel ne sait pas
+  // faire tourner le build brut -> 404. On force ici le bon preset.
+  nitro: {
+    preset: "vercel",
+  },
 });
