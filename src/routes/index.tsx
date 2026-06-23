@@ -16,21 +16,20 @@ import {
   Sparkles,
 } from "lucide-react";
 import heroImage from "@/assets/hero-plumber.jpg";
+import { siteConfig } from "@/config/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Plombier Aix-en-Provence | DS Caruso — Dépannage 24/7" },
+      { title: siteConfig.metaTitle },
       {
         name: "description",
-        content:
-          "DS Caruso, plombier expert à Aix-en-Provence. Dépannage urgent 24/7, rénovation salle de bain, chauffe-eau, recherche de fuite. Devis gratuit.",
+        content: siteConfig.metaDescription,
       },
-      { property: "og:title", content: "Plombier Aix-en-Provence | DS Caruso" },
+      { property: "og:title", content: siteConfig.ogTitle },
       {
         property: "og:description",
-        content:
-          "Artisan plombier certifié à Aix-en-Provence. Interventions rapides 24/7, devis gratuit, garantie décennale.",
+        content: siteConfig.ogDescription,
       },
       { property: "og:type", content: "website" },
     ],
@@ -38,8 +37,8 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const PHONE = "04 42 00 00 00";
-const PHONE_TEL = "tel:+33442000000";
+const PHONE = siteConfig.phoneDisplay;
+const PHONE_TEL = siteConfig.phoneTel;
 
 const services = [
   {
@@ -80,16 +79,7 @@ const services = [
   },
 ];
 
-const zones = [
-  "Aix-en-Provence",
-  "Venelles",
-  "Les Milles",
-  "Éguilles",
-  "Luynes",
-  "Bouc-Bel-Air",
-  "Meyreuil",
-  "Le Tholonet",
-];
+const zones = siteConfig.zones;
 
 const trust = [
   {
@@ -128,14 +118,14 @@ function Home() {
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <a href="#top" className="flex items-center gap-3">
             <div className="size-10 bg-brand-blue rounded-lg flex items-center justify-center text-primary-foreground font-display font-extrabold">
-              C
+              {siteConfig.logoLetter}
             </div>
             <div className="flex flex-col leading-tight">
               <span className="font-display font-extrabold text-lg tracking-tight uppercase">
-                DS Caruso
+                {siteConfig.companyName}
               </span>
               <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                Plomberie · Aix-en-Provence
+                {siteConfig.tagline}
               </span>
             </div>
           </a>
@@ -172,14 +162,15 @@ function Home() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-blue" />
               </span>
-              Disponible 24/7 à Aix-en-Provence
+              Disponible 24/7 à {siteConfig.city}
             </div>
             <h1 className="font-display text-5xl md:text-7xl font-extrabold leading-[1.05] mb-6 text-balance">
-              L'Art de la <span className="text-brand-blue">Plomberie</span> Haute Précision.
+              {siteConfig.heroTitlePrefix}{" "}
+              <span className="text-brand-blue">{siteConfig.heroTitleHighlight}</span>{" "}
+              {siteConfig.heroTitleSuffix}
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl text-pretty">
-              DS Caruso intervient rapidement pour vos dépannages, installations et rénovations.
-              Une expertise artisanale au service des particuliers et professionnels du Pays d'Aix.
+              {siteConfig.heroSubtitle}
             </p>
             <div className="flex flex-wrap gap-4">
               <a
@@ -213,13 +204,15 @@ function Home() {
           <div className="relative">
             <img
               src={heroImage}
-              alt="Artisan plombier DS Caruso intervenant à Aix-en-Provence"
+              alt={`Artisan plombier ${siteConfig.companyName} intervenant à ${siteConfig.city}`}
               width={1216}
               height={1408}
               className="w-full aspect-[4/5] object-cover rounded-3xl shadow-elegant"
             />
             <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-2xl shadow-elegant border border-border max-w-[240px]">
-              <div className="text-brand-blue font-display text-4xl font-extrabold">15+</div>
+              <div className="text-brand-blue font-display text-4xl font-extrabold">
+                {siteConfig.yearsExperience}
+              </div>
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mt-1">
                 Années d'expérience artisanale
               </div>
@@ -282,14 +275,15 @@ function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-16">
             <span className="text-brand-blue text-xs font-bold uppercase tracking-[0.2em]">
-              Pourquoi DS Caruso
+              Pourquoi {siteConfig.companyName}
             </span>
             <h2 className="font-display text-4xl md:text-5xl font-bold mt-3 mb-4 text-balance">
               L'exigence d'un artisan, la rigueur d'un professionnel.
             </h2>
             <p className="text-muted-foreground text-lg">
-              Depuis plus de 15 ans, nous mettons notre savoir-faire au service de la qualité,
-              la transparence et la durabilité de chaque chantier.
+              Depuis plus de {siteConfig.yearsExperience.replace("+", "")} ans, nous mettons notre
+              savoir-faire au service de la qualité, la transparence et la durabilité de chaque
+              chantier.
             </p>
           </div>
 
@@ -318,10 +312,10 @@ function Home() {
               Zones d'intervention
             </span>
             <h2 className="font-display text-4xl md:text-5xl font-bold mt-3 mb-4 text-balance">
-              Nous intervenons sur tout le Pays d'Aix.
+              Nous intervenons sur tout {siteConfig.region}.
             </h2>
             <p className="text-muted-foreground text-lg mb-8">
-              Basés à Aix-en-Provence, nous nous déplaçons dans un rayon de 20 km autour de la
+              Basés à {siteConfig.city}, nous nous déplaçons dans un rayon de 20 km autour de la
               ville pour vous garantir un service rapide.
             </p>
             <a
@@ -357,23 +351,7 @@ function Home() {
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                q: "Intervention un dimanche soir pour une fuite importante. Ponctuel, propre et très professionnel. Je recommande vivement.",
-                n: "Marc L.",
-                c: "Aix-en-Provence",
-              },
-              {
-                q: "Rénovation complète de notre salle de bain. Travail soigné, conseils pertinents et délais respectés. Bravo !",
-                n: "Sophie M.",
-                c: "Venelles",
-              },
-              {
-                q: "Diagnostic clair, devis transparent et chauffe-eau remplacé en une matinée. Un vrai artisan de confiance.",
-                n: "Jean-Pierre R.",
-                c: "Les Milles",
-              },
-            ].map((t) => (
+            {siteConfig.testimonials.map((t) => (
               <figure
                 key={t.n}
                 className="p-8 rounded-3xl bg-card border border-border shadow-soft flex flex-col"
@@ -426,7 +404,7 @@ function Home() {
                 </div>
               </a>
               <a
-                href="mailto:contact@plombier-caruso.fr"
+                href={`mailto:${siteConfig.email}`}
                 className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-brand-accent transition-colors"
               >
                 <div className="size-12 bg-brand-accent/15 text-brand-accent rounded-xl flex items-center justify-center">
@@ -436,7 +414,7 @@ function Home() {
                   <div className="text-[10px] font-bold uppercase text-slate-400 tracking-widest">
                     Email
                   </div>
-                  <div className="text-lg font-bold">contact@plombier-caruso.fr</div>
+                  <div className="text-lg font-bold">{siteConfig.email}</div>
                 </div>
               </a>
               <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.04] border border-white/10">
@@ -447,7 +425,9 @@ function Home() {
                   <div className="text-[10px] font-bold uppercase text-slate-400 tracking-widest">
                     Adresse
                   </div>
-                  <div className="text-lg font-bold">Aix-en-Provence, 13100</div>
+                  <div className="text-lg font-bold">
+                    {siteConfig.city}, {siteConfig.postalCode}
+                  </div>
                 </div>
               </div>
             </div>
@@ -515,12 +495,12 @@ function Home() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-3">
             <div className="size-9 bg-brand-blue rounded-lg flex items-center justify-center text-primary-foreground font-display font-extrabold">
-              C
+              {siteConfig.logoLetter}
             </div>
             <div>
-              <div className="font-display font-bold">DS Caruso Plomberie</div>
+              <div className="font-display font-bold">{siteConfig.companyName} Plomberie</div>
               <div className="text-xs text-muted-foreground">
-                © {new Date().getFullYear()} — Aix-en-Provence. Tous droits réservés.
+                © {new Date().getFullYear()} — {siteConfig.city}. Tous droits réservés.
               </div>
             </div>
           </div>
